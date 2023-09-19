@@ -34,6 +34,23 @@
             }
         }
 
+        public function actualizar($obj){
+            try {
+                $campos = "";
+                foreach($obj as $llave => $valor){
+                    $campos .= "`$llave`=:$llave,";
+                }
+                $campos = rtrim($campos, ","); // elimina la ultima coma que se ingrese por los valores que se ingrese
+                $this->sql = "UPDATE {$this->tabla} SET {$campos} {$this->wheres}";
+                $filasAfectadas = $this->ejecutar($obj);
+                return $filasAfectadas;
+            } catch (Exception $e) {
+                echo $e->getTraceAsString();
+            }
+        }
+
+      
+
         private function ejecutar($obj=null){
             $sth = $this->conexion->prepare($this->sql);
             if($obj !== null){
