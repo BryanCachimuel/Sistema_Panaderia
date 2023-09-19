@@ -49,7 +49,15 @@
             }
         }
 
-      
+        public function eliminar(){
+            try {
+                $this->sql = "DELETE FROM {$this->tabla} {$this->wheres}";
+                $filasAfectadas = $this->ejecutar();
+                return $filasAfectadas;
+            } catch (Exception $e) {
+                echo $e->getTraceAsString();
+            }
+        }
 
         private function ejecutar($obj=null){
             $sth = $this->conexion->prepare($this->sql);
