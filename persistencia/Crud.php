@@ -49,5 +49,10 @@
             $this->reiniciarValores();
             return $sth->rowCount();
         }
+
+        private function reiniciarValores(){
+            $this->wheres = "";
+            $this->sql = null;
+        }
     }
 ?>
