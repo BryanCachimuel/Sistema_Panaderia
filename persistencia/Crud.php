@@ -65,7 +65,11 @@
             return $this;
         }
 
-    
+        public function orWhere($llave, $condicion, $valor){
+            $this->wheres .= (strpos($this->wheres, "WHERE")) ? " OR " : " WHERE ";
+            $this->wheres .= "`$llave` $condicion " . ((is_string($valor)) ? "\"$valor\"" : $valor) . "";
+            return $this;
+        }
 
         private function ejecutar($obj=null){
             $sth = $this->conexion->prepare($this->sql);
@@ -88,4 +92,3 @@
             $this->sql = null;
         }
     }
-?>
