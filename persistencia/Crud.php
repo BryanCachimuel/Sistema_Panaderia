@@ -34,6 +34,20 @@
             }
         }
 
-      
+        private function ejecutar($obj=null){
+            $sth = $this->conexion->prepare($this->sql);
+            if($obj !== null){
+                foreach($obj as $llave => $valor){
+                    if(empty($valor)){
+                        $valor = null;
+                    }
+                    $sth->bindValue(":$llave", $valor);
+                    //$sth->bindValue(":$llave", $valor);
+                }
+            }
+            $sth->execute();
+            $this->reiniciarValores();
+            return $sth->rowCount();
+        }
     }
 ?>
