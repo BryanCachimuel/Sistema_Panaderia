@@ -59,6 +59,14 @@
             }
         }
 
+        public function where($llave, $condicion, $valor){
+            $this->wheres .= (strpos($this->wheres, "WHERE")) ? " AND " : " WHERE ";
+            $this->wheres .= "`$llave` $condicion " . ((is_string($valor)) ? "\"$valor\"" : $valor) . "";
+            return $this;
+        }
+
+    
+
         private function ejecutar($obj=null){
             $sth = $this->conexion->prepare($this->sql);
             if($obj !== null){
