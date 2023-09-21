@@ -29,10 +29,10 @@ class Conexion {
             
             //Realizandp la conexión hacia la base de datos
             $this->conexion = new PDO($url, $USUARIO, $CLAVE);
-            echo "Conectado hacia la base de Datos";
+            //echo "Conectado hacia la base de Datos";
             return $this->conexion;
         } catch (Exception $e) {
-            echo "No se a podido conectar hacia la base de datos";
+            //echo "No se a podido conectar hacia la base de datos";
             echo $e->getTraceAsString();
         }
     }
