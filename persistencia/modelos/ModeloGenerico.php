@@ -1,3 +1,13 @@
+
+
+
+
+
+
+
+
+
+
 <?php
     class ModeloGenerico extends Crud {
 
@@ -26,6 +36,32 @@
                 }
             }
             return $atributos;
+        }
+
+        protected function parsear($obj = null) {
+            try {
+                $atributos = $this->obtenerAtributos();
+                $objetoFinal = [];
+                // Obtener el objeto desde el modelo
+                if($obj == null){
+                    foreach ($atributos as $indice => $llave) {
+                       if(isset($this->{$llave})){
+                            $objetoFinal[$llave] = $this->{$llave};
+                       }
+                    }
+                    return $objetoFinal;
+                }
+
+                // corregir el objeto que recibimos con los atributos del modelo
+                foreach ($atributos as $indice => $llave) {
+                    if(isset($obj[$llave])){
+                        $objetoFinal[$llave] = $obj[$llave];
+                    }
+                }
+                return $objetoFinal;
+            } catch (Exception $e) {
+                throw new Exception("Error en ". $this->className . ".parsear() =>".$e->getMessage());
+            }
         }
     }
 ?>
