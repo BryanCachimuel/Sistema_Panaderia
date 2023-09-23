@@ -76,5 +76,13 @@
             $obj = $this->update($obj);
             return parent::actualizar($obj);
         }
+
+        public function __get($nombreAtributo) {
+            return $this->{$nombreAtributo};
+        }
+
+        public function __set($nombreAtributo, $valor){
+            $this->{$nombreAtributo} = $valor;
+        }
     }
 ?>
