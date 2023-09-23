@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 <?php
     class ModeloGenerico extends Crud {
 
@@ -75,6 +65,16 @@
             } catch (Exception $e) {
                 throw new Exception("Error en ". $this->className . ".fill() =>".$e->getMessage());
             }
+        }
+
+        public function insert($obj = null) {
+            $obj = $this->parsear($obj);
+            return parent::registrar($obj);
+        }
+
+        public function update($obj = null) {
+            $obj = $this->update($obj);
+            return parent::actualizar($obj);
         }
     }
 ?>
