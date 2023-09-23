@@ -63,5 +63,18 @@
                 throw new Exception("Error en ". $this->className . ".parsear() =>".$e->getMessage());
             }
         }
+
+        public function fill($obj){
+            try {
+                $atributos = $this->obtenerAtributos();
+                foreach ($atributos as $indice => $llave) {
+                    if(isset($obj[$llave])){
+                        $this->{$llave} = $obj[$llave];
+                    }
+                }
+            } catch (Exception $e) {
+                throw new Exception("Error en ". $this->className . ".fill() =>".$e->getMessage());
+            }
+        }
     }
 ?>
