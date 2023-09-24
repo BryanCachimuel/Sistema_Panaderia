@@ -15,6 +15,14 @@
             ];
         }
 
-        
+        public function listarPanaderia() {
+            $panaderiaModel = new Panaderia();
+            $lista = $panaderiaModel->mostrarRegistros();
+            return [
+                "codigo" => ((count($lista) > 0) ? 1 : -1),
+                "mensaje" => ((count($lista) > 0) ? "Se ha consultado los registros correctamente" : "No hay registros") ,
+                "datos" => $lista
+            ];
+        }
     }
 ?>
