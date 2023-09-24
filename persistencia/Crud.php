@@ -21,6 +21,15 @@
             }
         }
 
+        public function mostrarRegistrosUnicos(){
+            $lista = $this->mostrarRegistros();
+            if(count($lista) > 0){
+                return $lista[0];
+            }else{
+                return null;
+            }
+        }
+
         public function registrar($obj){
             try {
                 $campos = implode("`, `", array_keys($obj)); /* con el implode se imprime de la siguiente forma -> 'nombre', 'apellido', 'edad' */
