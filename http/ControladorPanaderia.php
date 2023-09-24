@@ -34,5 +34,15 @@
                 "datos" => $actualizados
             ];
         }
+
+        public function eliminarPanaderia($idPanaderia) {
+            $panaderiaModel = new Panaderia();
+            $eliminados = $panaderiaModel->where("id","=",$idPanaderia)->eliminar();
+            return [
+                "codigo" => (($eliminados > 0) ? 1 : -1),
+                "mensaje" => ($eliminados > 0) ? "Se ha eliminado un producto de la panaderia" : "No se a podido eliminar el producto de la panaderia",
+                "datos" => $eliminados
+            ];
+        }
     }
 ?>
