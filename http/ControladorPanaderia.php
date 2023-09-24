@@ -24,5 +24,15 @@
                 "datos" => $lista
             ];
         }
+
+        public function actualizarPanaderia($panaderia) {
+            $panaderiaModel = new Panaderia();
+            $actualizados = $panaderiaModel->where("id","=",$panaderia->idPanaderia)->update($panaderia);
+            return [
+                "codigo" => (($actualizados > 0) ? 1 : -1),
+                "mensaje" => ($actualizados > 0) ? "Se ha actualizado un producto de la panaderia" : "No se a podido actualizar el producto de la panaderia",
+                "datos" => $actualizados
+            ];
+        }
     }
 ?>
