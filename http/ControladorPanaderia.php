@@ -27,7 +27,7 @@
 
         public function actualizarPanaderia($panaderia) {
             $panaderiaModel = new Panaderia();
-            $actualizados = $panaderiaModel->where("id","=",$panaderia->idPanaderia)->update($panaderia);
+            $actualizados = $panaderiaModel->where("id","=",$panaderia["idPanaderia"])->update($panaderia);
             return [
                 "codigo" => (($actualizados > 0) ? 1 : -1),
                 "mensaje" => ($actualizados > 0) ? "Se ha actualizado un producto de la panaderia" : "No se a podido actualizar el producto de la panaderia",
@@ -42,6 +42,16 @@
                 "codigo" => (($eliminados > 0) ? 1 : -1),
                 "mensaje" => ($eliminados > 0) ? "Se ha eliminado un producto de la panaderia" : "No se a podido eliminar el producto de la panaderia",
                 "datos" => $eliminados
+            ];
+        }
+
+        public function buscarPanaderiaPorId($idPanaderia) {
+            $panaderiaModel = new Panaderia();
+            $panaderia = $panaderiaModel->where("id","=",$idPanaderia)->mostrarRegistrosUnicos();
+            return [
+                "codigo" => (($panaderia != null) ? 1 : -1),
+                "mensaje" => ($panaderia != null) ? "Se ha consultado un producto de la panaderia" : "No se a podido econtrar el producto de la panaderia",
+                "datos" => $panaderia
             ];
         }
     }
