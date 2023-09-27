@@ -1,18 +1,23 @@
 <?php 
-    require_once "./bin/conexion/Conexion.php";
+    /*require_once "./bin/conexion/Conexion.php";
     require_once "./bin/persistencia/Crud.php";
     require_once "./bin/persistencia/modelos/ModeloGenerico.php";
     require_once "./bin/persistencia/modelos/Panaderia.php";
     require_once "./bin/http/ControladorPanaderia.php";
     require_once "./bin/constantes/EMensajes.php";
-    require_once "./bin/http/Encapsulamiento.php";
+    require_once "./bin/http/Encapsulamiento.php";*/
+
+    require_once './src/Roots.php';
+    require_once PATH_SRC.'autoloader/Autoloader.php';
+
+    Autoloader::registrar();
     
-    $controladorPanaderia = new ControladorPanaderia();
+   $controladorPanaderia = new ControladorPanaderia();
     $respuesta = $controladorPanaderia->insertarPanaderia([
-        "producto" => "torta de naranja",
-        "descripcion" => "torta de arina con naranja y majar",
+        "producto" => "tortas heladas",
+        "descripcion" => "torta de arina con frutas",
         "cantidad" => 10,
-        "valor_unidad" => 12.00
+        "valor_unidad" => 17.00
     ]);
 
     echo "</br>";
