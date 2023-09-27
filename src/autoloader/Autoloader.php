@@ -12,7 +12,12 @@
             }else{
                 spl_autoload_register(array('Autoloader','cargar'));
             }
-        } 
+        }
+        
+        public static function cargar($clase){
+            $nombreArchivo = $clase . '.php';
+            $carpetas = require '';
+        }
         
     }
 

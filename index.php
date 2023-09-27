@@ -1,21 +1,23 @@
 <?php 
-    require_once "./conexion/Conexion.php";
-    require_once "./persistencia/Crud.php";
-    require_once "./persistencia/modelos/ModeloGenerico.php";
-    require_once "./persistencia/modelos/Panaderia.php";
-    require_once "./http/ControladorPanaderia.php";
-
+    require_once "./bin/conexion/Conexion.php";
+    require_once "./bin/persistencia/Crud.php";
+    require_once "./bin/persistencia/modelos/ModeloGenerico.php";
+    require_once "./bin/persistencia/modelos/Panaderia.php";
+    require_once "./bin/http/ControladorPanaderia.php";
+    require_once "./bin/constantes/EMensajes.php";
+    require_once "./bin/http/Encapsulamiento.php";
+    
     $controladorPanaderia = new ControladorPanaderia();
-    /*$respuesta = $controladorPanaderia->insertarPanaderia([
-        "producto" => "leche",
-        "descripcion" => "leche semidescremada",
-        "cantidad" => 25,
-        "valor_unidad" => 1.05
+    $respuesta = $controladorPanaderia->insertarPanaderia([
+        "producto" => "torta de naranja",
+        "descripcion" => "torta de arina con naranja y majar",
+        "cantidad" => 10,
+        "valor_unidad" => 12.00
     ]);
 
     echo "</br>";
     var_dump($respuesta);
-    echo "</br>";*/
+    echo "</br>";
 
 
 
@@ -29,7 +31,7 @@
     echo "</br>";
 
     
-    echo "<pre>";
+    /*echo "<pre>";
     $panaderiaId = $controladorPanaderia->buscarPanaderiaPorId(2);
     var_dump($panaderiaId);
     echo "</pre>";
@@ -49,6 +51,6 @@
 
     echo "</br>";
     $borrarpanaderia = $controladorPanaderia->eliminarPanaderia(3);
-    var_dump($borrarpanaderia);
+    var_dump($borrarpanaderia);*/
    
 ?>

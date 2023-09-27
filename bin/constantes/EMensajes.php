@@ -11,6 +11,8 @@
         const BUSQUEDA_ID_EXITOSA = "BUSQUEDA_ID_EXITOSA";
         const ERROR_BUSQUEDA_ID = "ERROR_BUSQUEDA_ID";
         const ERROR_LISTAR = "ERROR_LISTAR";
+        const NO_HAY_REGISTROS = "NO_HAY_REGISTROS";
+        const ERROR_CONEXION_BD = "ERROR_CONEXION_BD";
 
         public static function obtenerMensaje($codigo){
             switch($codigo){
@@ -43,6 +45,12 @@
 
                 case EMensajes::ERROR_LISTAR:
                     return new Encapsulamiento(-1, "Se ha producido un error al listar los registros");
+                
+                case EMensajes::NO_HAY_REGISTROS:
+                    return new Encapsulamiento(0, "No existen registros");
+
+                case EMensajes::ERROR_CONEXION_BD:
+                    return new Encapsulamiento(-1, "Error al conectar con la base de datos");
             }
         }
     }
