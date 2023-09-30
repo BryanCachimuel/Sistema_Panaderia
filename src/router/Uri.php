@@ -31,20 +31,26 @@
 
         private function execFunction(){
             $this->parseRequest();
+            $this->response = call_user_func_array($this->function, $this->matches);
         }
         
         public function call(){
             try {
                $this->request = $_REQUEST;
                $this->execFunction(); 
+               $this->printResponse();
             } catch (Exception $e) {
-                
+                echo "ERROR: ". $e->getMessage();
             }
         }
 
         private function parseRequest(){
             $reflectionFunct = new ReflectionMethod($this->function);
+            $this->request = new Request($this->request);
+            $this->matches[] = $this->request;
         }
+
+        
 
     }
 
