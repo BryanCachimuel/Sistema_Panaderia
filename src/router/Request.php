@@ -26,7 +26,12 @@
         }
 
         public function setExtraData($flag){
-            
+            if($flag == true){
+                $this->method = $_SERVER["REQUEST_METHOD"];
+                $this->data["http_referer"] = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : null;
+                $headers = apache_request_headers();
+                $this->data["headers"] = new Request($headers, false);
+            }
         }
 
     }
