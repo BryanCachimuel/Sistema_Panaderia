@@ -28,13 +28,22 @@
             $this->matches = $matches;
             return true;
         }
+
+        private function execFunction(){
+            $this->parseRequest();
+        }
         
         public function call(){
             try {
-                
+               $this->request = $_REQUEST;
+               $this->execFunction(); 
             } catch (Exception $e) {
                 
             }
+        }
+
+        private function parseRequest(){
+            $reflectionFunct = new ReflectionMethod($this->function);
         }
 
     }
