@@ -10,4 +10,6 @@
             require $rutaArchivo;
         }
     }
+
+    Route::submit();
 ?>
