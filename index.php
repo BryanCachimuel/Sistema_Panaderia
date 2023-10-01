@@ -1,5 +1,5 @@
-<?php 
-  
-    require_once "./src/laucher.php";
-  
+<?php
+
+    require './src/launcher.php';
+
 ?>
