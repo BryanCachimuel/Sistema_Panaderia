@@ -102,7 +102,7 @@ class Uri {
         if (is_string($this->response)) {
             echo $this->response;
         } else if (is_object($this->response) || is_array($this->response)) {
-            $res = new Encapsulamiento();
+            $res = new Respuesta();
             echo $res->json($this->response);
         }
     }
