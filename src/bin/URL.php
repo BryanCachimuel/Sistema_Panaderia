@@ -8,7 +8,11 @@
             return trim($baseURL,"/");
         }
 
-       
+        public static function to($url){
+            $url = trim($url, "/");
+            return URL::base() . "/{url}";
+        }
+
     }
 
 ?>  
