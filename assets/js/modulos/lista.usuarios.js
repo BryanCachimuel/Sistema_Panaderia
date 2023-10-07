@@ -50,6 +50,31 @@ var vista = {
                     .send();
         }
     },
+
+    utils: {
+        templates: {
+            item: function(obj){
+                return '<tr>'
+                       + '<td>'+obj.nombres+'</td>'
+                       + '<td>'+obj.apellidos+'</td>'
+                       + '<td>'+obj.edad+'</td>'
+                       + '<td>'+obj.correo+'</td>'
+                       + '<td>'+obj.telefono+'</td>'
+                       + '<td>'
+                       + '<a href="javascript:;" class="btn-accion editar">Editar</a>'
+                       + '  |  '
+                       + '<a href="javascript:;" class="btn-accion eliminar">Eliminar</a>'
+                       + '<td>'
+                       + '</tr>';
+            },
+            consultando: function(){
+                return '<tr><td colspan="6">Consultando...</td></tr>';
+            },
+            noHayRegistros: function(){
+                return '<tr><td colspan="6">No hay Registros...</td></tr>';
+            }
+        }
+    }
 };
 
 $(vista.init);
