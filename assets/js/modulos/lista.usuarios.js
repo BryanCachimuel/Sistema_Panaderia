@@ -40,6 +40,16 @@ var vista = {
             }
         }
     },
+
+    peticiones: {
+        listarUsuarios: function(){
+            __app.get(RUTAS_API.USUARIOS.LISTAR)
+                    .beforeSend(vista.callbacks.peticiones.listarUsuarios.beforeSend)
+                    .success(vista.callbacks.peticiones.listarUsuarios.completo)
+                    .error(vista.callbacks.peticiones.listarUsuarios.completo)
+                    .send();
+        }
+    },
 };
 
 $(vista.init);
