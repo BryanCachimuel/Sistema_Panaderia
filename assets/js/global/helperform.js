@@ -4,7 +4,7 @@
  Licencia gratuita, mantenga este encabezado de archivo para no infringir los derechos
  de autor.
  */
- var HelperForm = {
+var HelperForm = {
     CONSTANTS: {
         FILL_FORM: 'FILL_FORM',
         GET_FORM_DATA: 'GET_FORM_DATA'
