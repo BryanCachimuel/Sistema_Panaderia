@@ -6,7 +6,7 @@ class Conexion {
     private $configuracion = [
         "driver" => "mysql",
         "host" => "localhost",
-        "database" => "panaderia",
+        "database" => "crud_usuarios",
         "port" => "3306",
         "username" => "root",
         "password" => "",
