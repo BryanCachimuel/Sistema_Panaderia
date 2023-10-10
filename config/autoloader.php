@@ -1,8 +1,6 @@
 <?php
 
-    return [
-        PATH_APP,
-        PATH_SRC
-    ];
-
-?>
+return [
+    PATH_APP,
+    PATH_SRC
+];
