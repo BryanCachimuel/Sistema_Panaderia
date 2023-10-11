@@ -19,7 +19,23 @@ var vista = {
                     vista.peticiones.registrarUsuario(obj);
                 }
             }
-        },  
+        },
+        peticiones: {
+            beforeSend: function () {
+                vista.controles.formUsuario.find('input,button').prop('disabled', true);
+            },
+            completo: function () {
+                vista.controles.formUsuario.find('input,button').prop('disabled', false);
+            },
+            finalizado: function (respuesta) {
+                if (__app.validarRespuesta(respuesta)) {
+                    vista.controles.formUsuario.find('input').val('');
+                    swal('Correcto', 'Se ha registrado correctamente el usuario', 'success');
+                    return;
+                }
+                swal('Error', respuesta.mensaje, 'error');
+            }
+        }
     },
 };
 $(vista.init);
