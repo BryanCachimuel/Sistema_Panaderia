@@ -37,5 +37,15 @@ var vista = {
             }
         }
     },
+    peticiones: {
+        registrarUsuario: function (obj) {
+            __app.post(RUTAS_API.USUARIOS.REGISTRAR_USUARIO, obj)
+                    .beforeSend(vista.callbacks.peticiones.beforeSend)
+                    .complete(vista.callbacks.peticiones.completo)
+                    .success(vista.callbacks.peticiones.finalizado)
+                    .error(vista.callbacks.peticiones.finalizado)
+                    .send();
+        }
+    }
 };
 $(vista.init);
