@@ -14,6 +14,13 @@ class ControladorUsuarios extends Controller {
         return $this->view("usuarios/registrarusuario");
     }
 
+    public function formEdicionUsuario() {
+        $variables = [
+            "titulo" => "Actualizar con AJAX"
+        ];
+        return $this->view("usuarios/registrarusuario", $variables);
+    }
+
     public function insertarUsuario(Request $request) {
         $usuarioModel = new Usuarios();
         $usuario = $usuarioModel->where("correo", "=", $request->correo)->first();
