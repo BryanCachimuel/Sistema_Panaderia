@@ -16,7 +16,7 @@
                     <a href="<?= URL::base() ?>">Listar usuarios</a>
                 </div>
                 <hr />
-                <h4 class="card-title mb-4">Insertar con AJAX</h4>
+                <h4 class="card-title mb-4"><?= isset($titulo) ? $titulo : "Insertar con AJAX" ?></h4>
                 <form id="formUsuario" action="usuarios/registrar" method="POST">
                     <div class="form-group">
                         <label for="nombres">Nombres (*):</label>
