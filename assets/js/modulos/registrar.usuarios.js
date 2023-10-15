@@ -1,9 +1,12 @@
 var vista = {
     controles: {
         formUsuario: $('#formUsuario'),
+        idUsuario: $('#idUsuario')
     },
     init: function () {
         vista.eventos();
+        var idUsuario = vista.controles.idUsuario.val();
+        vista.peticiones.consultarUsuarioPorId(idUsuario);
     },
     eventos: function () {
         vista.controles.formUsuario.on('submit', vista.callbacks.eventos.accionesFormRegistro.ejecutar);
@@ -29,8 +32,17 @@ var vista = {
             },
             finalizado: function (respuesta) {
                 if (__app.validarRespuesta(respuesta)) {
-                    vista.controles.formUsuario.find('input').val('');
-                    swal('Correcto', 'Se ha registrado correctamente el usuario', 'success');
+                    if (!vista.controles.idUsuario) {
+                        vista.controles.formUsuario.find('input').val('');
+                    }
+                    swal('Correcto', respuesta.mensaje, 'success');
+                    return;
+                }
+                swal('Error', respuesta.mensaje, 'error');
+            },
+            consultarPorIdCompleto: function (respuesta) {
+                if (__app.validarRespuesta(respuesta)) {
+                    vista.controles.formUsuario.fillForm(respuesta.datos)
                     return;
                 }
                 swal('Error', respuesta.mensaje, 'error');
@@ -39,11 +51,26 @@ var vista = {
     },
     peticiones: {
         registrarUsuario: function (obj) {
-            __app.post(RUTAS_API.USUARIOS.REGISTRAR_USUARIO, obj)
+            var url = RUTAS_API.USUARIOS.REGISTRAR_USUARIO;
+            if (vista.controles.idUsuario) {
+                url = RUTAS_API.USUARIOS.ACTUALIZAR_USUARIO;
+                obj.idUsuario = vista.controles.idUsuario.val();
+            }
+            __app.post(url, obj)
                     .beforeSend(vista.callbacks.peticiones.beforeSend)
                     .complete(vista.callbacks.peticiones.completo)
                     .success(vista.callbacks.peticiones.finalizado)
                     .error(vista.callbacks.peticiones.finalizado)
+                    .send();
+        },
+        consultarUsuarioPorId: function (id) {
+            __app.post(RUTAS_API.USUARIOS.CONSULTAR_USUARIO_POR_ID, {
+                idUsuario: id,
+            })
+                    .beforeSend(vista.callbacks.peticiones.beforeSend)
+                    .complete(vista.callbacks.peticiones.completo)
+                    .success(vista.callbacks.peticiones.consultarPorIdCompleto)
+                    .error(vista.callbacks.peticiones.consultarPorIdCompleto)
                     .send();
         }
     }
