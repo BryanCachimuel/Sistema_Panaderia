@@ -14,9 +14,10 @@ class ControladorUsuarios extends Controller {
         return $this->view("usuarios/registrarusuario");
     }
 
-    public function formEdicionUsuario() {
+    public function formEdicionUsuario($id) {
         $variables = [
-            "titulo" => "Actualizar con AJAX"
+            "titulo" => "Actualizar con AJAX",
+            "idUsuario" => base64_decode($id)
         ];
         return $this->view("usuarios/registrarusuario", $variables);
     }
@@ -43,11 +44,11 @@ class ControladorUsuarios extends Controller {
         return $respuesta;
     }
 
-    public function actualizarUsuario($usuario) {
+    public function actualizarUsuario(Request $request) {
         $usuarioModel = new Usuarios();
-        $actualizados = $usuarioModel->where("id", " = ", $usuario["idUsuario"])
-                ->update($usuario);
-        $v = ($actualizados > 0);
+        $actualizados = $usuarioModel->where("id", " = ", $request->idUsuario)
+                ->update($request->all());
+        $v = ($actualizados >= 0);
         return new Respuesta($v ? EMensajes::ACTUALIZACION_EXITOSA : EMensajes::ERROR_ACTUALIZACION);
     }
 
@@ -58,11 +59,14 @@ class ControladorUsuarios extends Controller {
         return new Respuesta($v ? EMensajes::ELIMINACION_EXITOSA : EMensajes::ERROR_ELIMINACION);
     }
 
-    public function buscarUsuarioPorId($idUsuario) {
+    public function buscarUsuarioPorId(Request $request) {
+        $idUsuario = $request->idUsuario;
         $usuarioModel = new Usuarios();
-        $usuario = $usuarioModel->where("id", " = ", $idUsuario)->first();
+        $usuario = $usuarioModel->where("id", "=", $idUsuario)->first();
         $v = ($usuario != null);
-        return new Respuesta($v ? EMensajes::CORRECTO : EMensajes::NO_HAY_REGISTROS);
+        $respuesta = new Respuesta($v ? EMensajes::CORRECTO : EMensajes::NO_HAY_REGISTROS);
+        $respuesta->setDatos($usuario);
+        return $respuesta;
     }
 
 }
